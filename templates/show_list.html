@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+   <link rel="stylesheet" href="https://centeltech.com/css2.5.7/main.css">
+   <body>
+      <div id="navbar">
+         <a href="/home">Home</a>
+         <a href="/login">Login</a>
+         <a href="/register">Register</a>
+         <a href="/show/list" class="active">All your todos</a>
+         <a href="/show/users">All users</a>
+         <a href="/create/task">Create a new task</a>
+      </div>
+      <table "border" = 1>
+         <thead>
+            <td>Task Name</td>
+            <td>&nbsp;</td>
+            <td>Priority</td>
+            <td>&nbsp;</td>
+            <td>Email</td>
+            <td>&nbsp;</td>
+            <td>Action</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{row["task_name"]}}</td>
+               <td>&nbsp;</td>
+               <td> {{ row["priority"]}}</td>
+               <td>&nbsp;</td>
+               <td> {{ row["username"]}}</td>
+               <td>&nbsp;</td>
+               <td><a href="/complete/task?id={{row['id']}}">Complete</a><br><a href="/delete/task?id={{row['id']}}">Delete</a></td>	
+               <td>&nbsp;</td>
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <a href = "/">Go back to home page</a>
+   </body>
+</html>

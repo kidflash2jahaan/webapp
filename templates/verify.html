@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify</title>
+    <link rel="stylesheet" href="https://centeltech.com/css2.5.7/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .name {
+            width: 350px;
+            /* padding: 50px 50px; */
+            background-position: center center;
+            text-align: center;
+        }
+
+        .loginInfo {
+            width: 350px;
+            /* padding: 50px 50px; */
+            background-position: center center;
+            text-align: center;
+        }
+
+        .contact {
+            width: 350px;
+            /* padding: 50px 50px; */
+            background-position: center center;
+            text-align: center;
+        }
+
+        .choice {
+            width: 350px;
+            /* padding: 50px 50px; */
+            background-position: center center;
+            text-align: center center;
+        }
+
+        body {
+            background-color: rgb(243, 242, 242);
+            color: rgb(1, 1, 71);
+            font-family: "Quicksand";
+            font-size: 20px;
+            text-align: center center;
+            display: inline-block;
+            padding: 20px 20px;
+            margin: 50px 450px;
+            /* background-image: url("blackstripebackground.png"); */
+        }
+
+        .submit {
+            background-color: #DAA520;
+            color: honeydew;
+            font-family: "Quicksand";
+            width: 100px;
+        }
+
+        .totalform {
+            border: 1px solid #c1c1c1;
+            margin-top: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1em;
+        }
+
+        .password {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Verify</h1>
+    <h2>Please fill out the information below:</h2>
+    <form action="/verify/2" method='post'>
+        <div class="totalform">
+            <div class="name">
+                <label for="verify"> Verify:
+                    <input type="text" name="Verify" id="Verify">
+                </label>
+            </div>
+                <!--<tr>
+        <br>
+        <label for= "confirmPassword"> Confrim Password:
+        <input type="text" id="confirmPassword">
+        </label>
+        <tr>
+        </td>
+
+        </div>
+        <br>
+        <div class="contact">
+        <label for="email"> Email:
+        <input type="email" name="email" id="email">
+        </label>
+        <br>
+        <label for="phoneNumber"> Phone Number:
+        <input type="tel" name="phoneNumber" id="phoneNumber">
+        </label>
+        </div>
+        <br>-->
+                <!-- <div class="choice">
+        <p>Choose which one applies to you:</p>
+        <label for="options"> Therapists 
+        <input type="radio" name="options" id="options">
+        </label>
+        <label for="options"> Physical Trainers
+        <input type="radio" name="options" id="options">
+        </label>
+        <label for="options"></label> Patient
+        <input type="radio" name="options" id="options">
+        </label>
+        </div> -->
+                <br>
+                <br>
+                <button type="submit" class="submit">Submit</button>
+                <button type="reset" class="submit">Reset</button>
+            </div>
+    </form>
+</body>
+
+</html>

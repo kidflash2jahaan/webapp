@@ -1,0 +1,4 @@
+.btn, .btn-primary {animation: color-change 5s infinite;}
+h2 {animation: position-change 5s infinite;}
+@keyframes color-change {0% {background-color: red;} 25% {background-color: yellow;} 50% {background-color: green;} 75% {background-color: blue;} 100% {background-color: red;}}
+@keyframes position-change {from {text-align: left;} to {text-align: right;}}
