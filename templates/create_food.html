@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://centeltech.com/css2.5.7/main.css">
+    <title>Create food</title>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="/home">Home</a>
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+      <a href="/show/list">All your todos</a>
+      <a href="/show/users">All users</a>
+      <a href="/show/food">All food</a>
+      <a href="/create/food" class="active">Create a new food</a>
+      <a href="/create/task">Create a new task</a>
+    </div>
+    <form action="{{url_for('add_food')}}" method="POST">
+      <div class="centered">
+        Food Name
+        <br />
+        <textarea name="food_name"></textarea>
+        <br />
+        Protein
+        <br />
+        <input type="text" name="protein" id="protein" placeholder="in grams(g)"/>
+        <br />
+        Carbs
+        <br />
+        <input type="text" name="carbs" id="carbs" placeholder="in grams(g)"/>
+        <br />
+        Fat
+        <br />
+        <input type="text" name="fat" id="fat" placeholder="in grams(g)"/>
+        <input type="submit" value="submit" />
+        <br />
+      </div>
+    </form>
+  </body>
+</html>
