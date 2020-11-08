@@ -5,14 +5,15 @@
   </head>
   <body>
     <div id="navbar">
-      <a href="/home">Home</a>
+      <a href="/home" class="active">Home</a>
       <a href="/login">Login</a>
       <a href="/register">Register</a>
-      <a href="/show/list">All your todos</a>
+      <a href="/show/list">All todos</a>
       <a href="/show/users">All users</a>
       <a href="/show/food">All food</a>
-      <a href="/create/food" class="active">Create a new food</a>
+      <a href="/create/food">Create a new food</a>
       <a href="/create/task">Create a new task</a>
+      <a href="/projects">Create a new task</a>
     </div>
     <form action="{{url_for('add_food')}}" method="POST">
       <div class="centered">

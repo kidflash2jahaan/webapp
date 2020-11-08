@@ -40,24 +40,27 @@ answers = ["It is certain",
            "Cannot predict now",
            "Concentrate and ask again"]
 
+@app.route("/projects")
+def projects():
+    return render_template("projects.html")
 
-@app.route("/magic_8_ball", methods=['GET', 'POST'])
+@app.route("/projects/magic_8_ball", methods=['GET', 'POST'])
 def eight_ball():
     return render_template("Magic_8_ball.html")
 
 
-@app.route("/magic_8_ball/answer", methods=['GET', 'POST'])
+@app.route("/projects/magic_8_ball/answer", methods=['GET', 'POST'])
 def eight_ball_answer():
     random_c = random.choice(answers)
     return render_template("Magic_8_ball_answer.html", randomc=random_c)
 
 
-@app.route("/feedback")
+@app.route("/projects/feedback")
 def feedback():
     return render_template("Feedback.html")
 
 
-@app.route("/feedback/send-email", methods=['GET', 'POST'])
+@app.route("/projects/feedback/send-email", methods=['GET', 'POST'])
 def feedback_send_email():
     Name = request.form.get("Name")
     Email = request.form.get("Email")
@@ -70,12 +73,12 @@ def feedback_send_email():
     return "Thank you for your feedback!"
 
 
-@app.route("/message_codifier/encrypt")
+@app.route("/projects/message_codifier/encrypt")
 def encrypt():
     return render_template("Encrypt.html")
 
 
-@app.route("/message_codifier/encrypt/check", methods=['GET', 'POST'])
+@app.route("/projects/message_codifier/encrypt/check", methods=['GET', 'POST'])
 def encrypt_check():
     message = request.form.get("message")
     e_m = encrypt_message(message)
@@ -93,12 +96,12 @@ def encrypt_message(message):
     return encrypted_message
 
 
-@app.route("/message_codifier/decrypt")
+@app.route("/projects/message_codifier/decrypt")
 def decrypt():
     return render_template("Decrypt.html")
 
 
-@app.route("/message_codifier/decrypt/check", methods=['GET', 'POST'])
+@app.route("/projects/message_codifier/decrypt/check", methods=['GET', 'POST'])
 def decrypt_check():
     message = request.form.get("message")
     d_m = decrypt_message(message)
