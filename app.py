@@ -252,6 +252,15 @@ def add_food():
             return render_template("control_panel.html", msg=msg)
 
 
+@app.route("/show/food")
+def view_food():
+    con = sql.connect("database.db")
+    con.row_factory = sql.Row
+    cur = con.cursor()
+    cur.execute("select * from Food_tracker order by food_name")
+    rows = cur.fetchall()
+    return render_template("show_food.html", rows=rows)
+
 @app.route("/show/list")
 def view_list():
     con = sql.connect("database.db")
@@ -269,6 +278,18 @@ def delete_task():
     con.row_factory = sql.Row
     cur = con.cursor()
     cur.execute("delete from To_do_list where id = ?", id)
+    con.commit()
+    msg = "Operation succesful¢¢¢¢¢¢¢¢¢¢¢¢¢¢¢"
+    return render_template("control_panel.html", msg=msg)
+
+
+@app.route("/delete/food")
+def delete_food():
+    id = request.args.get("id")
+    con = sql.connect("database.db")
+    con.row_factory = sql.Row
+    cur = con.cursor()
+    cur.execute("delete from Food_tracker where id = ?", id)
     con.commit()
     msg = "Operation succesful¢¢¢¢¢¢¢¢¢¢¢¢¢¢¢"
     return render_template("control_panel.html", msg=msg)
