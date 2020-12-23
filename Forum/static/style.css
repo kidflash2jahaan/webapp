@@ -1,0 +1,150 @@
+@import "https://centeltech.com/css2.7.9/main.css";
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200&display=swap');
+
+.header {
+  box-shadow: 5px solid #1a1919;
+  padding: 30px;
+  text-align: center;
+}
+
+#navbar {
+  overflow: hidden;
+  background-color: #1a1919;
+  font-family: 'Jost', sans-serif;
+
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  /* color: #f2f2f2; */
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#navbar a.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+body {
+  background-color: #0a1e29;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-family: 'Jost', sans-serif;
+}
+nav {
+  width: 100vw;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  font-family: 'Jost', sans-serif;
+
+}
+li {
+  position: relative;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  font-family: 'Jost', sans-serif;
+}
+a {
+  z-index: 1;
+  color: white;
+  text-decoration: none;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 10px 5px;
+}
+
+a:hover {
+  color: #fff;
+}
+
+li:before {
+  content: "";
+  position: absolute;
+  height: 33.33%;
+  width: 0;
+  background-color: #0d7cff;
+  right: 0;
+  z-index: 0;
+  top: 33.33%;
+  transition: all 0.5s;
+}
+li:after {
+  content: "";
+  position: absolute;
+  height: 33.33%;
+  width: 0;
+  background-color: #0d7cff;
+  left: 0;
+  z-index: 0;
+  bottom: 0;
+  transition: all 0.5s;
+}
+a:before {
+  position: absolute;
+  content: "";
+  height: 33.33%;
+  width: 0;
+  background-color: #0d7cff;
+  bottom: 66.66%;
+  left: 0;
+  transition: all 0.5s;
+}
+li:hover:before,
+li:hover:after,
+li:hover a:before {
+  width: 100%;
+}
+
+
+textarea {
+  width: 500px !important;
+  display: flex;
+  margin-left: 30%;
+  height: 200px;
+  border-radius: 20px;
+  outline: none;
+  padding: 10px;
+  font-size: xx-small;
+}
+
+.select {
+  background-color: #fff;
+  width: 500px;
+  border-radius: 5px;
+  margin-left: 50px;
+  outline: none;
+  text-align: center;
+}
+
+.container {
+  background-color: #1a1919;
+}

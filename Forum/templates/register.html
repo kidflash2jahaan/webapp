@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="header">Q&A</div>
+    <ul id="navbar">
+      <li><a href="/">Home</a></li>
+      {% if user and user["admin_boolean"] == 0 and user["expert_boolean"] == 0 %}
+      <li><a href="/ask">Ask Question</a></li>
+      {% endif %}
+      {% if user and user["admin_boolean"] == 0 and user["expert_boolean"] == 1 %}
+      <li><a href="/answer">Answer Questions</a></li>
+      {% endif %}
+      {% if user and user["admin_boolean"] == 1 and user["expert_boolean"] == 0 %}
+      <li><a href="/users">Users</a></li>
+      {% endif %}
+      {% if user and user["admin_boolean"] == 1 and user["expert_boolean"] == 1 %}
+      <li><a href="/answer">Answer Questions</a></li>
+      <li><a href="/users">Users</a></li>
+      {% endif %}
+      <li><a href="/unanswered">Unanswered Questions</a></li>
+      {% if not user %}
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Register</a></li>
+      {% endif %}
+      {% if user %}
+      <li><a href="/logout">Logout</a></li>
+      {% endif %}
+    </ul>
+        <h1>Register</h1>
+        <hr style="background-color: #fff; width: 500px;"> 
+
+              <form action="/register" method="POST">
+                    <label>Name</label><br>
+                      <input type="text" placeholder="Name" name="name"><br><br>
+                    <label>Password</label><br>
+                      <input type="password" placeholder="Password" name="password"><br>
+                      <button type="submit" class="btn btn-primary">Register</button>
+              </form>
+  </body>
+</html>
