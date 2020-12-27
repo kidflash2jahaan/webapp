@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, render_template_string
 from flask_mail import Mail, Message
 import sqlite3 as sql
+import pywhatkit
 import random
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -40,9 +41,11 @@ answers = ["It is certain",
            "Cannot predict now",
            "Concentrate and ask again"]
 
+
 @app.route("/projects")
 def projects():
     return render_template("projects.html")
+
 
 @app.route("/projects/magic_8_ball", methods=['GET', 'POST'])
 def eight_ball():
@@ -117,6 +120,8 @@ def decrypt_message(message):
         calc3 = chr(calc2)
         decrypted_message = decrypted_message + calc3
     return decrypted_message
+
+
 @app.route("/")
 def redirect_home():
     return redirect("/home")
@@ -261,6 +266,7 @@ def view_food():
     rows = cur.fetchall()
     return render_template("show_food.html", rows=rows)
 
+
 @app.route("/show/list")
 def view_list():
     con = sql.connect("database.db")
@@ -324,6 +330,18 @@ def verify_user(username, password):
     else:
         login_success = False
     return login_success
+
+
+@app.route("/img-to-txt")
+def imgtotxt():
+    pywhatkit.image_to_ascii_art(
+        "/Users/mac/OneDrive/Programming/webapp/Todo/img/firetech_logo.png", "/Users/mac/OneDrive/Programming/webapp/Todo/img/firetech_logo.txt")
+
+    f = open('/Users/mac/OneDrive/Programming/webapp/Todo/img/firetech_logo.txt', 'r')
+    lines = f.read()
+    f.close()
+
+    return render_template("Text Image display.html", asciiImage=lines)
 
 
 if __name__ == "__main__":
