@@ -6,11 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Answer Question</title>
     <link rel="stylesheet" href="/static/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jost:wght@200&display=swap"
-      rel="stylesheet"
-    />
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" /> -->
     <script src="./app.js" defer></script>
   </head>
   <body>
@@ -22,16 +18,15 @@
       <li><a href="/ask">Ask Question</a></li>
       {% endif %}
       {% if user and user["admin_boolean"] == 0 and user["expert_boolean"] == 1 %}
-      <li><a href="/answer">Answer Questions</a></li>
+      <li><a href="/unanswered">Unanswered Questions</a></li>
       {% endif %}
       {% if user and user["admin_boolean"] == 1 and user["expert_boolean"] == 0 %}
       <li><a href="/users">Users</a></li>
       {% endif %}
       {% if user and user["admin_boolean"] == 1 and user["expert_boolean"] == 1 %}
-      <li><a href="/answer">Answer Questions</a></li>
+      <li><a href="/unanswered">Unanswered Questions</a></li>
       <li><a href="/users">Users</a></li>
       {% endif %}
-      <li><a href="/unanswered">Unanswered Questions</a></li>
       {% if not user %}
       <li><a href="/login">Login</a></li>
       <li><a href="/register">Register</a></li>
@@ -40,12 +35,12 @@
       <li><a href="/logout">Logout</a></li>
       {% endif %}
     </ul>
-    <h1>What?</h1>
+    <h1>{{ question['question_text'] }}</h1>
     <hr style="background-color: #fff; width: 500px;"> 
-    <form>
+    <form action="{{url_for("question", question_id=question["id"])}}">
       <label for="textArea">Answer</label><br />
-      <textarea></textarea>
-      <button type="submit" class="btn btn-primary">Submit</button><br />
+      <textarea class="textarea" style="font-size: larger;"></textarea><br>
+      <button type="submit" class="btn btn-primary" name="answer_text">Submit</button><br/>
     </form>
   </body>
 </html>

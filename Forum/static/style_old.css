@@ -133,17 +133,17 @@ li:hover a:before {
   border-radius: 20px;
   outline: none;
   padding: 10px;
-  font-size: xx-large;
+  font-size: larger;
 }
 
-/* .select {
+.select {
   background-color: #fff;
   width: 500px;
   border-radius: 5px;
   margin-left: 50px;
   outline: none;
   text-align: center;
-} */
+}
 
 .container {
   background-color: #1a1919;
@@ -152,3 +152,7 @@ li:hover a:before {
 .active{
   color:#007bff;
 }
+
+/* .textarea {
+  font-size: larger;
+} */
