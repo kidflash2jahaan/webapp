@@ -37,9 +37,9 @@
     </ul>
     <h1>{{ question['question_text'] }}</h1>
     <hr style="background-color: #fff; width: 500px;"> 
-    <form action="{{url_for("question", question_id=question["id"])}}">
-      <label for="textArea">Answer</label><br />
-      <textarea class="textarea" style="font-size: larger;"></textarea><br>
+    <form action="{{url_for("answer", question_id=question["id"])}}" method="POST">
+      <label for="textArea">Answer</label>
+      <textarea class="textarea" style="font-size: larger;" name = "answer_text"></textarea><br><br>
       <button type="submit" class="btn btn-primary" name="answer_text">Submit</button><br/>
     </form>
   </body>

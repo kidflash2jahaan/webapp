@@ -34,25 +34,14 @@
         </ul>
         <h1>Answered Questions</h1>
         <div class="container">
-            <a href="#">
-              <h4>Question One</h4>
-              <p>Asked by: Herbert</p>
-              <p>Answered by: Anthony</p>
+          {% for q in question %}
+            <a href="{{url_for("question", question_id = q["question_id"])}}">
+              <h4>{{q["question_text"]}}</h4>
+              <p>Asked by: {{q["asker_name"]}}</p>
+              <p>Answered by: {{q["expert_name"]}}</p>
             </a>
+            <br>
+            {% endfor %}
           </div><br>
-          <div class="container">
-            <a href="#">
-              <h4>Question Two</h4>
-              <p>Asked by: Herbert</p>
-              <p>Answered by: Anthony</p>
-            </a>
-          </div><br>
-          <div class="container">
-            <a href="#">
-              <h4>Question Three</h4>
-              <param>Asked by: Herbert</p>
-              <p>Answered by: Anthony</p>
-            </a>
-          </div>
   </body>
 </html>

@@ -4,7 +4,7 @@ import sqlite3
 
 def connect_db():
     sql = sqlite3.connect(
-        "/Users/mac/OneDrive/Programming/webapp/Forum/questions.db")
+        "/Users/jahaan/OneDrive/Programming/webapp/Forum/questions.db")
     print("True")
     sql.row_factory = sqlite3.Row
     return sql
