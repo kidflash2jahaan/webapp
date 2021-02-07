@@ -1,3 +1,4 @@
+{% from "show_links.html" import show_links %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,29 +10,7 @@
   </head>
   <body>
          <div class="header">Q&A</div>
-        <ul id="navbar">
-          <li><a href="/">Home</a></li>
-          {% if user and user["admin_boolean"] == 0 and user["expert_boolean"] == 0 %}
-          <li><a href="/ask">Ask Question</a></li>
-          {% endif %}
-          {% if user and user["admin_boolean"] == 0 and user["expert_boolean"] == 1 %}
-          <li><a href="/unanswered">Unanswered Questions</a></li>
-          {% endif %}
-          {% if user and user["admin_boolean"] == 1 and user["expert_boolean"] == 0 %}
-          <li><a href="/users">Users</a></li>
-          {% endif %}
-          {% if user and user["admin_boolean"] == 1 and user["expert_boolean"] == 1 %}
-          <li><a href="/unanswered">Unanswered Questions</a></li>
-          <li><a href="/users">Users</a></li>
-          {% endif %}
-          {% if not user %}
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
-          {% endif %}
-          {% if user %}
-          <li><a href="/logout">Logout</a></li>
-          {% endif %}
-        </ul>
+         {{ show_links(user) }}
         <h1>Answered Questions</h1>
         <div class="container">
           {% for q in question %}

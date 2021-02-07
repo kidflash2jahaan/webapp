@@ -1,3 +1,4 @@
+{% from "show_links.html" import show_links %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,35 +12,13 @@
   </head>
   <body>
     <div class="header">Q&A</div>
+    {{ show_links(user) }}
     <!-- <nav> -->
-    <ul id="navbar">
-      <li><a href="/">Home</a></li>
-      {% if user and user["admin_boolean"] == 0 and user["expert_boolean"] == 0 %}
-      <li><a href="/ask">Ask Question</a></li>
-      {% endif %}
-      {% if user and user["admin_boolean"] == 0 and user["expert_boolean"] == 1 %}
-      <li><a href="/unanswered">Unanswered Questions</a></li>
-      {% endif %}
-      {% if user and user["admin_boolean"] == 1 and user["expert_boolean"] == 0 %}
-      <li><a href="/users">Users</a></li>
-      {% endif %}
-      {% if user and user["admin_boolean"] == 1 and user["expert_boolean"] == 1 %}
-      <li><a href="/unanswered">Unanswered Questions</a></li>
-      <li><a href="/users">Users</a></li>
-      {% endif %}
-      {% if not user %}
-      <li><a href="/login">Login</a></li>
-      <li><a href="/register">Register</a></li>
-      {% endif %}
-      {% if user %}
-      <li><a href="/logout">Logout</a></li>
-      {% endif %}
-    </ul>
     <h1>{{ question['question_text'] }}</h1>
     <hr style="background-color: #fff; width: 500px;"> 
     <form action="{{url_for("answer", question_id=question["id"])}}" method="POST">
       <label for="textArea">Answer</label>
-      <textarea class="textarea" style="font-size: larger;" name = "answer_text"></textarea><br><br>
+      <textarea class="textarea" placeholder="Type your answer." name="answer"></textarea><br>
       <button type="submit" class="btn btn-primary" name="answer_text">Submit</button><br/>
     </form>
   </body>

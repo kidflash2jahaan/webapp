@@ -28,7 +28,16 @@ def get_current_user():
 def home():
     user = get_current_user()
     db = get_db()
-    questions_cur = db.execute('select questions.id as question_id, questions.question_text, askers.name_text as asker_name, experts.name_text as expert_name from questions join users as askers on askers.id = questions.asked_by_id join users as experts on experts.id = questions.expert_id where questions.answer_text is not null order by questions.id desc')
+    questions_cur = db.execute('''
+                                    select
+                                    questions.id as question_id, 
+                                    questions.question_text, 
+                                    askers.name_text as asker_name, 
+                                    experts.name_text as expert_name 
+                                    from questions 
+                                    join users as askers on askers.id = questions.asked_by_id
+                                    join users as experts on experts.id = questions.expert_id 
+                                    where questions.answer_text is not null order by questions.id desc''')
     questions_result = questions_cur.fetchall()
     return render_template("home.html", user=user, question=questions_result)
 
@@ -54,6 +63,7 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     user = get_current_user()
+    error = None
     if request.method == "POST":
         db = get_db()
         name = request.form["name"]
@@ -61,20 +71,32 @@ def login():
         user_cur = db.execute(
             "select id, name_text, password_text from users where name_text=?", [name])
         user_result = user_cur.fetchone()
-        if check_password_hash(user_result["password_text"], password):
-            session["user"] = user_result["name_text"]
-            return redirect(url_for("home"))
+        if user_result:
+            if check_password_hash(user_result["password_text"], password):
+                session["user"] = user_result["name_text"]
+                return redirect(url_for("home"))
+            else:
+                error="Password is invalid"
         else:
-            return redirect("/login")
-    return render_template("login.html", user=user)
+            error="Username is invalid"
+    return render_template("login.html", user=user, error=error)
 
 @app.route("/question/<question_id>")
 def question(question_id):
     user = get_current_user()
     db = get_db()
     print("question", question_id)
-    question_cur = db.execute(
-        "select questions.question_text, questions.answer_text, askers.name_text as asker_name, experts.name_text as expert_name from questions join users as askers on askers.id = questions.asked_by_id join users as experts on experts.id = questions.expert_id where questions.id = ? ", [question_id])
+    question_cur = db.execute("""
+                                select
+                                questions.question_text, 
+                                questions.answer_text, 
+                                askers.name_text as asker_name, 
+                                experts.name_text as expert_name 
+                                from questions 
+                                join users as askers on askers.id = questions.asked_by_id 
+                                join users as experts on experts.id = questions.expert_id 
+                                where questions.id = ? 
+                                """, [question_id])
     question = question_cur.fetchone()
     print(question)
     return render_template("question.html", user=user, question=question)
@@ -104,8 +126,14 @@ def unanswered():
     if user["expert_boolean"] == 0:
         return redirect(url_for("home"))
     db = get_db()
-    question_cur = db.execute(
-        "select questions.id, questions.question_text, users.name_text from questions join users on users.id = questions.asked_by_id where questions.answer_text is null and questions.expert_id = ?", [user["id"]])
+    question_cur = db.execute("""
+                                select 
+                                questions.id, 
+                                questions.question_text, 
+                                users.name_text 
+                                from questions 
+                                join users on users.id = questions.asked_by_id 
+                                where questions.answer_text is null and questions.expert_id = ?""", [user["id"]])
     questions = question_cur.fetchall()
     return render_template("unanswered.html", user=user, questions=questions)
 
@@ -146,6 +174,7 @@ def users():
 
 @app.route("/promote/<user_id>")
 def promote(user_id):
+    user = get_current_user()
     if not user:
         return redirect(url_for("login"))
     if user["admin_boolean"] == 0:
@@ -158,6 +187,7 @@ def promote(user_id):
 
 @app.route("/demote/<user_id>")
 def demote(user_id):
+    user = get_current_user()
     if not user:
         return redirect(url_for("login"))
     if user["admin_boolean"] == 0:
