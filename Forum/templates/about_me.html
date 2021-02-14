@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% from "show_links.html" import show_links %}
+{% block title %}About Me{% endblock %}
+  {% block body %}
+  <body>
+    <div class="header">Q&A</div>
+    {{ show_links(user) }}
+    <h1>Jahaan Pardhanani</h1>
+    <img src="/static/jahaan.png" alt="Picture of Jahaan" height="300px" width="auto">
+    <p>"I am 9 years old and in 4th grade. I love music, technology, and innovation."</p>
+        <p>"I love coding in HTML, CSS, Javascript, and Python. I am amazed with all the things technology could help us with in the future. I love teaching other kids to code and it makes me really happy."</p>
+            <p>"I love playing piano. I play Sweet Child o’ Mine, Radioactive, November Rain, Bad Liar, Faded, Ignite, Alone, Darkside, Girls Like You, Its Been So Long (FNAF2), and Mayday on the piano."</p>
+                <p>"My favorite genre of music is EDM and Rock. My favorite musicians and bands are Alan Walker, Guns N’ Roses, Imagine Dragons, and The Living Tombstone."</p>
+                    <p>"When I grow up I will be an inventor and a musician. I have created my own company called firetech. I would also like to compose and produce my own music that makes people happy and cheerful."</p>
+                        <p>Click to <a href=https://www.youtube.com/channel/UCgMQiDT6nZ6XpxEaO_USwMw><img src="/static/subscribe.png" alt="Subscribe button"></a> to my youtube channel</p>
+  </body>
+</html>
+{% endblock %}

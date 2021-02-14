@@ -203,6 +203,11 @@ def logout():
     session.pop("user", None)
     return redirect(url_for("home"))
 
+@app.route("/about_me")
+def me():
+    return render_template("about_me.html")
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
